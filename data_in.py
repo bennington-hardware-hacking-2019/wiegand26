@@ -29,26 +29,32 @@ class Datalines:
             elif input(self.data1) == LOW:
                 capture += '1'
 
-    def watch_improved(self, name):
+    def watch_improved(self):
         start = time.time()
         capture = ''
-        print(name)
-        print('')
+        switch = False
         while input(self.button) == 0:
-            if time.time() - start > 1:
-                start = time.time()
-                if capture != '':
-                    print(hex(int(int(capture, 2))))
-                    capture = ''
+            if not switch and capture != '':
+                print("hexidecimal: " + hex(int(int(capture, 2))))
+                print("binary: " + bin(int(capture,2)))
+                print("decimal: " + str(int(capture,2)))
+                print("length: " + str(len(capture)))
+                capture = ''
+            
             if input(self.data0) == LOW:
                 capture += '0'
-                #time.sleep(.00005)
                 time.sleep(.0000005)
+                switch = True
+                start = time.time()
             elif input(self.data1) == LOW:
                 capture += '1'
                 time.sleep(.0000005)
+                switch = True
+                start = time.time()
+            elif time.time() - start > .5:
+                switch = False
 
 
-umm = Datalines(13,15,16)
-umm.watch_improved('Five')
+umm = Datalines(13, 15, 16)
+umm.watch_improved()
  
