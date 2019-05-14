@@ -56,7 +56,7 @@ class Datalines:
                     if done:
                         break
                         """
-                print("binary: " + capture[:pos[0]] + '|' + capture[pos[0]:pos[1]] + '|' + capture[:pos[1]])
+                print("binary: " + capture[:pos[0]] + '|' + capture[pos[0]:pos[1]] + '|' + capture[pos[1]:])
                 print("Card Number: " + str(int(capture[pos[0]:pos[1]], 2)))
                 print("length: " + str(len(capture[pos[0]:pos[1]])))
                 capture = ''
