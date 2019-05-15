@@ -39,6 +39,7 @@ class Datalines:
         while input(self.button) == 0:
             if not switch and capture != '':
                 """
+                capture = capture[::-1]
                 done = False
                 for beg in range(0, len(capture) - 1):
                     for end in range(beg, len(capture) - 1):
@@ -46,7 +47,8 @@ class Datalines:
                         possible = capture[pos[0]:pos[1]]
                         if len(possible) == 0:
                             break
-                        if experiment == int(possible, 2):
+                        print(possible)
+                        if int(possible, 2) > 1000 and int(possible) < 5000:
                             print("binary: " + capture[:pos[0]] + '|' + capture[pos[0]:pos[1]] + '|' + capture[pos[1]])
                             print("Card Number: " + str(int(possible, 2)))
                             print("length: " + str(len(possible)))
@@ -55,22 +57,29 @@ class Datalines:
                             break
                     if done:
                         break
-                        """
+                """
+
                 print("binary: " + capture[:pos[0]] + '|' + capture[pos[0]:pos[1]] + '|' + capture[pos[1]:])
                 print("Card Number: " + str(int(capture[pos[0]:pos[1]], 2)))
-                print("length: " + str(len(capture[pos[0]:pos[1]])))
+                """
+                print("\nHere's the reverse:")
+                capture = capture[::-1]
+                print("binary: " + capture[:pos[0]] + '|' + capture[pos[0]:pos[1]] + '|' + capture[pos[1]:])
+                print("Card Number: " + str(int(capture[pos[0]:pos[1]], 2)))
+                print('')
+                """
+                print(len(capture))
                 capture = ''
                 done = True
 
-            
             if input(self.data0) == LOW:
                 capture += '0'
-                time.sleep(.0005)
+                time.sleep(float(sys.argv[3]))
                 switch = True
                 start = time.time()
             elif input(self.data1) == LOW:
                 capture += '1'
-                time.sleep(.0005)
+                time.sleep(float(sys.argv[3]))
                 switch = True
                 start = time.time()
             elif time.time() - start > .5:
