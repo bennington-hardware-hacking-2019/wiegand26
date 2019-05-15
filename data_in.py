@@ -3,15 +3,13 @@ from RPi.GPIO import *
 import time
 
 class Datalines:
-    def __init__(self, negative, positive, button):
+    def __init__(self, negative, positive):
         self.data0 = negative
         self.data1 = positive
-        self.button = button
         setmode(BOARD)
         setwarnings(False)
         setup(self.data0, IN)
         setup(self.data1, IN)
-        setup(self.button, IN)
 
     def watch(self):
         start = time.time()
@@ -32,6 +30,6 @@ class Datalines:
 
 
 
-umm = Datalines(15, 13, 16)
+umm = Datalines(15, 13)
 umm.watch()
  
