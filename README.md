@@ -5,7 +5,7 @@ on a Raspberry Pi 3
 ## Installation
 Clone the repository using:
 ``` 
-git clone "https://github.com/bennington-hardware-hacking-2019/cobra_controller"
+git clone "https://github.com/bennington-hardware-hacking-2019/wiegand26.git"
 ```
 
 ## Hardware Setup
